@@ -76,6 +76,7 @@ module.exports = {
     'import/no-internal-modules': ['error', {
         'forbid': ['**/index'],
     }],
+    'import/no-named-as-default': 0,
     'no-duplicate-imports': ['error'],
     'modules-newline/import-declaration-newline': ['error'],
 
