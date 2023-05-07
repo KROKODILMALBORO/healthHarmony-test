@@ -18,7 +18,7 @@ import {
 export async function getByUser(filter: IGetByUserFilter): Promise<IGetByUser> {
     try {
         const stringified = queryString.stringify(filter);
-        const res = await fetch(`${ROOT_URL}${INSTANCE_PATH}/${stringified}`);
+        const res = await fetch(`${ROOT_URL}${INSTANCE_PATH}?${stringified}`);
 
         return res.json();
     } catch (e) {

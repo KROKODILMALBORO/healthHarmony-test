@@ -26,6 +26,7 @@ export function usePostsByUser() {
             return res;
         }
 
+        setPosts(null);
         setPosts(res.posts);
 
         return res;

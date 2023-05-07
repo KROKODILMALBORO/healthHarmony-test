@@ -2,8 +2,9 @@ import {
     IGetByUserFilter,
 } from './types/requests';
 
-export function geDefaultFilterUser(): IGetByUserFilter {
+export function getDefaultFilterUser(): IGetByUserFilter {
     return {
         text: '',
+        isFavorite: false,
     };
 }
