@@ -1,8 +1,29 @@
+@font-face {
+    font-weight: 700;
+    font-family: 'Gilroy';
+    src: url(./fonts/Gilroy-Bold.woff2),
+        url(./fonts/Gilroy-Bold.woff);
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-weight: 500;
+    font-family: 'Gilroy';
+    src: url(./fonts/Gilroy-Medium.woff2),
+        url(./fonts/Gilroy-Medium.woff);
+    font-display: swap;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+
     margin: 0;
 
     -webkit-font-smoothing: antialiased;

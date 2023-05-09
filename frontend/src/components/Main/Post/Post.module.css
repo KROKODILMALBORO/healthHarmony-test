@@ -19,7 +19,7 @@
 .title {
     font-size: 14px;
     line-height: 16px;
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
 }
 
@@ -40,5 +40,4 @@
 .body {
     font-size: 14px;
     line-height: 16px;
-    font-weight: 300;
 }
