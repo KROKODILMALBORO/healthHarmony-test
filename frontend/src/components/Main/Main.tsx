@@ -1,8 +1,4 @@
 /* eslint-disable react/jsx-indent */
-import {
-    IPost,
-} from 'instances/Posts/types';
-
 import React, {
     FC,
     useEffect,
@@ -27,12 +23,13 @@ import {
 } from './constants';
 
 const Main: FC = () => {
-    const [value, setValue] = useState(''); // то что находится в инпуте
-    const [filter, setFilter] = useState(''); // то по чему филтруем
+    const [value, setValue] = useState('');
+    const [filter, setFilter] = useState('');
 
     const {
         posts,
         getPosts,
+        // patchPost,
     } = usePostsByUser();
 
     const list = useMemo(() => {
