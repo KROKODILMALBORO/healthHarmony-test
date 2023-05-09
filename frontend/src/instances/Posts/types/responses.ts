@@ -9,3 +9,7 @@ import {
 export interface IGetByUser extends IWithResponseError {
     posts?: IPost[];
 }
+
+// export interface IPatchByUser extends IWithResponseError {
+//     post: IPost | null;
+// }

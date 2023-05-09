@@ -15,6 +15,21 @@ import heartColorImg from './media/heartColor.svg';
 
 const Post: FC<IProps> = (props) => {
     const [isFavorite, setIsFavorite] = useState(props.post.isFavorite);
+    // const [isPending, setIsPending] = useState(false);
+
+    // const onChangeFavorite = () => {
+    //     if (isPending) {
+    //         return;
+    //     }
+
+    //     setIsPending(true);
+    //     props.patchPost({
+    //         id: props.post.id,
+    //         isFavorite: !props.post.isFavorite,
+    //     });
+
+    //     setIsPending(false);
+    // };
 
     return (
         <div className={classNames(styles.post, props.className)}>
@@ -26,7 +41,7 @@ const Post: FC<IProps> = (props) => {
                     className={styles.favoriteIcon}
                     src={isFavorite ? heartColorImg : heartImg}
                     alt={''}
-                    onClick={() => setIsFavorite(!isFavorite)}
+                    onClick={() => setIsFavorite(false)}
                 />
             </div>
             <div className={styles.body}>
