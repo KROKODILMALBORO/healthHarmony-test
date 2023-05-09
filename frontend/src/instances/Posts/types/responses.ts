@@ -1,11 +1,11 @@
 import {
     IWithResponseError,
-} from '../../../../tools/types'; // 'tools/types'
+} from 'tools/types';
 
 import {
     IPost,
 } from '.';
 
 export interface IGetByUser extends IWithResponseError {
-    posts: IPost[];
+    posts?: IPost[];
 }

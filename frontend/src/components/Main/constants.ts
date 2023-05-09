@@ -1,0 +1,1 @@
+export const FETCH_BY_FILTERS_DELAY = 500;

@@ -4,49 +4,43 @@
             "id": 0,
             "title": "Lorem ipsum dolor sit amet",
             "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam maximus ante ac arcu laoreet, vel consectetur tellus euismod. Phasellus nisl lectus, ultricies eget facilisis vel, posuere a massa.",
-            "isFavorites": false
+            "isFavorite": true
         },
         {
             "id": 1,
             "title": "Vestibulum vitae pretium sem",
             "body": "Vestibulum vitae pretium sem. Nullam laoreet consectetur leo eu semper. Integer scelerisque iaculis suscipit. Sed pharetra mi eu neque rutrum dapibus.",
-            "isFavorites": false
+            "isFavorite": false
         },
         {
             "id": 2,
             "title": "Class aptent taciti sociosqu ad litora torquent per conubia nostra",
             "body": "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-            "isFavorites": false
+            "isFavorite": false
         },
         {
             "id": 3,
             "title": "Aliquam molestie lobortis fermentum",
             "body": "Aliquam molestie lobortis fermentum. In vel pretium ex. Morbi erat erat, ultrices id dapibus ut, rutrum non est. Ut rhoncus, mi ut sollicitudin venenatis, ex velit scelerisque quam, eu mollis magna sapien a lacus.",
-            "isFavorites": false
+            "isFavorite": false
         },
         {
             "id": 4,
             "title": "Aliquam erat volutpat",
             "body": "Aliquam erat volutpat. Cras a risus sapien. Vestibulum eu porttitor orci. Mauris cursus condimentum varius. Integer maximus, nisi luctus elementum malesuada, justo odio fringilla felis, in dictum enim erat ac ipsum.",
-            "isFavorites": false
+            "isFavorite": true
         },
         {
             "id": 5,
             "title": "Proin tellus est, mollis sit amet malesuada mattis, consequat nec leo",
             "body": "Proin tellus est, mollis sit amet malesuada mattis, consequat nec leo. Morbi mollis facilisis elit, in malesuada odio tincidunt et. Nam rutrum scelerisque elementum.",
-            "isFavorites": false
+            "isFavorite": false
         },
         {
             "id": 6,
             "title": "Fusce placerat risus nec luctus condimentum",
             "body": "Fusce placerat risus nec luctus condimentum. Ut pharetra, velit eu volutpat rutrum, turpis eros feugiat nunc, vel finibus mi lectus ut erat. Fusce elementum congue posuere.",
-            "isFavorites": false
-        },
-        {
-            "id": 7,
-            "title": "Etiam rutrum ante consectetur eros volutpat dapibus",
-            "body": "Etiam rutrum ante consectetur eros volutpat dapibus. Suspendisse potenti. Curabitur eget lorem eget lorem bibendum iaculis. Nam pretium odio eget erat efficitur ullamcorper a at lectus. Maecenas condimentum, orci in tincidunt varius, urna sapien tempus est, sed faucibus ex lorem eu erat. Nam lacinia condimentum augue, vel porta libero porttitor lacinia.",
-            "isFavorites": false
+            "isFavorite": false
         }
     ]
 }

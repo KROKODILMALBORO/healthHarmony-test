@@ -4,5 +4,5 @@ export interface IPost {
     title: string;
     body: string;
 
-    isFavorites: boolean;
+    isFavorite: boolean;
 }
