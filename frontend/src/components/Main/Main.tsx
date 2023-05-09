@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-indent */
+import {
+    IPost,
+} from 'instances/Posts/types';
+
 import React, {
     FC,
     useEffect,
+    useMemo,
     useState,
 } from 'react';
 
@@ -9,9 +14,6 @@ import {
     useDelay,
 } from 'tools/hooks';
 
-import {
-    getDefaultFilterUser,
-} from 'instances/Posts/functions';
 import {
     usePostsByUser,
 } from 'instances/Posts/hooks';
@@ -25,54 +27,64 @@ import {
 } from './constants';
 
 const Main: FC = () => {
-    const [filters, setFilters] = useState(getDefaultFilterUser);
+    const [value, setValue] = useState(''); // то что находится в инпуте
+    const [filter, setFilter] = useState(''); // то по чему филтруем
 
     const {
         posts,
         getPosts,
     } = usePostsByUser();
 
+    const list = useMemo(() => {
+        if (!posts) {
+            return null;
+        }
+
+        return posts.filter((post) =>
+            post.body
+                .toLocaleLowerCase()
+                .includes(filter.toLocaleLowerCase())
+        );
+    }, [filter, posts]);
+
     useEffect(() => {
         (async () => {
-            await getPosts(filters);
+            await getPosts();
         })();
     }, []);
-
-    useDelay(async () => {
-        await getPosts(filters);
-    }, FETCH_BY_FILTERS_DELAY, filters);
+    useDelay(() => {
+        setFilter(value.trim());
+    }, FETCH_BY_FILTERS_DELAY, value);
 
     return (
         <div className={styles.main}>
             <Search
                 className={styles.search}
-                value={filters.text}
+                value={value}
                 type={'text'}
-                placeholder={'Поиск'}
-                onChangeValue={(text) => setFilters({
-                    ...filters,
-                    text,
-                })}
+                placeholder={'Search'}
+                onChange={setValue}
             />
             {
-                posts ?
-                    posts.length ?
+                list ?
+                    list.length ?
                         <div className={styles.list}>
                             {
-                                posts.map((post) =>
-                                    <Post
-                                        className={styles.post}
-                                        key={post.id}
-                                        post={post}
-                                    />
-                                )
+                                list
+                                    .map((post) =>
+                                        <Post
+                                            className={styles.post}
+                                            key={post.id}
+                                            post={post}
+                                        />
+                                    )
                             }
                         </div> :
                         <div className={styles.emptyResult}>
-                            По вашему запросу ничего не найдено ¯\_(ツ)_/¯
+                            Nothing found for your request
                         </div> :
                     <div className={styles.loading}>
-                        Загрузка..
+                        Loading..
                     </div>
             }
         </div>

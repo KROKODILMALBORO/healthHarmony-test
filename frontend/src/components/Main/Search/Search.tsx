@@ -12,7 +12,7 @@ import styles from './Search.module.css';
 
 const Search: FC<IProps> = (props) => {
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        props.onChangeValue?.(e.target.value);
+        props.onChange?.(e.target.value);
     };
 
     return (

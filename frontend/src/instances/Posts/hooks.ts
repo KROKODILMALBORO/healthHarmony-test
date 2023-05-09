@@ -2,9 +2,6 @@ import {
     IPost,
 } from './types';
 import {
-    IGetByUserFilter,
-} from './types/requests';
-import {
     IGetByUser,
 } from './types/responses';
 
@@ -17,8 +14,8 @@ import * as fetches from './fetches';
 export function usePostsByUser() {
     const [posts, setPosts] = useState<IPost[] | null>(null);
 
-    const getPosts = async (filter: IGetByUserFilter): Promise<IGetByUser> => {
-        const res = await fetches.getByUser(filter);
+    const getPosts = async (): Promise<IGetByUser> => {
+        const res = await fetches.getByUser();
 
         if (!res.posts || res.error) {
             console.log(res.error);
@@ -26,7 +23,6 @@ export function usePostsByUser() {
             return res;
         }
 
-        setPosts(null);
         setPosts(res.posts);
 
         return res;

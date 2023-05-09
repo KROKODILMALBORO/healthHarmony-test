@@ -1,23 +1,40 @@
 .main {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+    padding: 10px;
 }
 
 .search {
-
+    width: 400px;
 }
 
 .list {
+    display: flex;
+    flex-direction: column;
 
+    overflow: auto;
+    max-height: calc(100vh - 40px);
+
+    gap: 10px;
+    padding: 10px;
 }
 
 .post {
-
+    width: 700px;
 }
 
 .emptyResult {
-
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 300;
 }
 
 .loading {
-    
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 300;
 }
