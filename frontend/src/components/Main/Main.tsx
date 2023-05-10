@@ -7,6 +7,7 @@ import {
 import React, {
     FC,
     useCallback,
+    useEffect,
     useMemo,
     useState,
 } from 'react';
@@ -27,17 +28,27 @@ import {
     FETCH_BY_FILTERS_DELAY,
 } from './constants';
 
+const initailFilter: IParamsGetByUser = {
+    q: '',
+};
 const Main: FC = () => {
-    const [value, setValue] = useState('');
-    const [filter, setFilter] = useState<IParamsGetByUser>({
-        q: value,
-    });
+    const [value, setValue] = useState(initailFilter.q);
+    const [filter, setFilter] = useState(initailFilter);
     const onChangeSearch: React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => setValue(e.target.value), []);
+    const memoFilter = useMemo(() => filter, [filter.q]);
+
+    useDelay(() => {
+        setFilter({
+            q: value?.trim(),
+        });
+    }, FETCH_BY_FILTERS_DELAY, value);
+
     const {
         posts,
         // getPosts,
         // patchPost,
-    } = usePostsByUser(filter);
+    } = usePostsByUser(memoFilter);
+
     // Данный кейс решает задачу фильтрации на стороне frontend-a
     // В ТЗ же указанно  - (если поисковой запрос не меняется в течение 500мс, делается запрос на сервер)
     /* const list = useMemo(() => {
@@ -51,19 +62,6 @@ const Main: FC = () => {
                 .includes(filter.toLocaleLowerCase())
         );
     }, [filter, posts]); */
-
-    /* useEffect(() => {
-        (async () => {
-            await getPosts({
-                q: value,
-            });
-        })();
-    }, [value]); */
-    useDelay(() => {
-        setFilter({
-            q: value.trim(),
-        });
-    }, FETCH_BY_FILTERS_DELAY, value);
 
     return (
         <div className={styles.main}>
