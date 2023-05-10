@@ -6,6 +6,8 @@ import {
 
 import React, {
     FC,
+    useCallback,
+    useMemo,
     useState,
 } from 'react';
 
@@ -30,7 +32,7 @@ const Main: FC = () => {
     const [filter, setFilter] = useState<IParamsGetByUser>({
         q: value,
     });
-
+    const onChangeSearch: React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => setValue(e.target.value), []);
     const {
         posts,
         // getPosts,
@@ -70,7 +72,7 @@ const Main: FC = () => {
                 value={value}
                 type={'text'}
                 placeholder={'Search'}
-                onChange={setValue}
+                onChange={onChangeSearch}
             />
             {
                 posts ?
