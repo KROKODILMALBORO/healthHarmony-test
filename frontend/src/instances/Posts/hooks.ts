@@ -1,6 +1,9 @@
 import {
     IPost,
 } from './types';
+import {
+    IParamsGetByUser,
+} from './types/requests';
 // import {
 //     IPatchByUserBody,
 // } from './types/requests';
@@ -10,16 +13,17 @@ import {
 } from './types/responses';
 
 import {
+    useEffect,
     useState,
 } from 'react';
 
 import * as fetches from './fetches';
 
-export function usePostsByUser() {
+export function usePostsByUser(params?: IParamsGetByUser) {
     const [posts, setPosts] = useState<IPost[] | null>(null);
 
-    const getPosts = async (): Promise<IGetByUser> => {
-        const res = await fetches.getByUser();
+    const getPosts = async (params?: IParamsGetByUser): Promise<IGetByUser> => {
+        const res = await fetches.getByUser(params);
 
         if (!res.posts || res.error) {
             console.log(res.error);
@@ -32,6 +36,10 @@ export function usePostsByUser() {
         return res;
     };
 
+    useEffect(() => {
+        getPosts(params);
+    },
+    [params]);
     // const patchPost = async (body: IPatchByUserBody): Promise<IPatchByUser> => {
     //     const res = await fetches.patchByUser(body);
 

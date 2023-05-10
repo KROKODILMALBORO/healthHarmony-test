@@ -2,9 +2,13 @@
 //     IPatchByUserBody,
 // } from './types/requests';
 import {
+    IParamsGetByUser,
+} from './types/requests';
+import {
     IGetByUser,
-    // IPatchByUser,
 } from './types/responses';
+
+import queryString from 'query-string';
 
 import {
     ROOT_URL,
@@ -14,9 +18,15 @@ import {
     INSTANCE_PATH,
 } from './constants';
 
-export async function getByUser(): Promise<IGetByUser> {
+export async function getByUser(query?: IParamsGetByUser): Promise<IGetByUser> {
+    // queryString - ваша зависимость, которую вы не использовали :)
+    const url = queryString.stringifyUrl({
+        url: `${ROOT_URL}${INSTANCE_PATH}`,
+        query,
+    });
+
     try {
-        const res = await fetch(`${ROOT_URL}${INSTANCE_PATH}`);
+        const res = await fetch(url);
 
         return {
             posts: await res.json(),

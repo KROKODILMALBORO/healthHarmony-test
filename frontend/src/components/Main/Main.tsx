@@ -1,8 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-indent */
+import {
+    IParamsGetByUser,
+} from 'instances/Posts/types/requests';
+
 import React, {
     FC,
-    useEffect,
-    useMemo,
     useState,
 } from 'react';
 
@@ -24,15 +27,18 @@ import {
 
 const Main: FC = () => {
     const [value, setValue] = useState('');
-    const [filter, setFilter] = useState('');
+    const [filter, setFilter] = useState<IParamsGetByUser>({
+        q: value,
+    });
 
     const {
         posts,
-        getPosts,
+        // getPosts,
         // patchPost,
-    } = usePostsByUser();
-
-    const list = useMemo(() => {
+    } = usePostsByUser(filter);
+    // Данный кейс решает задачу фильтрации на стороне frontend-a
+    // В ТЗ же указанно  - (если поисковой запрос не меняется в течение 500мс, делается запрос на сервер)
+    /* const list = useMemo(() => {
         if (!posts) {
             return null;
         }
@@ -42,15 +48,19 @@ const Main: FC = () => {
                 .toLocaleLowerCase()
                 .includes(filter.toLocaleLowerCase())
         );
-    }, [filter, posts]);
+    }, [filter, posts]); */
 
-    useEffect(() => {
+    /* useEffect(() => {
         (async () => {
-            await getPosts();
+            await getPosts({
+                q: value,
+            });
         })();
-    }, []);
+    }, [value]); */
     useDelay(() => {
-        setFilter(value.trim());
+        setFilter({
+            q: value.trim(),
+        });
     }, FETCH_BY_FILTERS_DELAY, value);
 
     return (
@@ -63,11 +73,11 @@ const Main: FC = () => {
                 onChange={setValue}
             />
             {
-                list ?
-                    list.length ?
+                posts ?
+                    posts.length ?
                         <div className={styles.list}>
                             {
-                                list
+                                posts
                                     .map((post) =>
                                         <Post
                                             className={styles.post}
