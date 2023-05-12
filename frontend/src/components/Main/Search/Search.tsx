@@ -4,25 +4,23 @@ import {
 
 import classNames from 'classnames';
 import React, {
-    ChangeEvent,
-    FC,
+    FC, useCallback,
 } from 'react';
 
 import styles from './Search.module.css';
 
-const Search: FC<IProps> = (props) => {
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        props.onChange?.(e.target.value);
-    };
-
+const Search: FC<IProps> = ({
+    className, onChange, ...props
+}) => {
+    const onChangeSearch: React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => onChange && onChange(e.target.value), [onChange]);
     return (
         <input
-            className={classNames(styles.search, props.className)}
-            value={props.value}
-            placeholder={props.placeholder}
-            onChange={onChange}
+            className={classNames(styles.search, className)}
+            onChange={onChangeSearch}
+            {...props}
         />
     );
 };
+
 
 export default Search;

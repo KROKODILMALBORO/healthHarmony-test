@@ -1,7 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-indent */
+import {
+    IParamsGetByUser,
+} from 'instances/Posts/types/requests';
+
 import React, {
     FC,
-    useEffect,
     useMemo,
     useState,
 } from 'react';
@@ -22,17 +26,30 @@ import {
     FETCH_BY_FILTERS_DELAY,
 } from './constants';
 
+const initailFilter: IParamsGetByUser = {
+    q: '',
+};
 const Main: FC = () => {
-    const [value, setValue] = useState('');
-    const [filter, setFilter] = useState('');
+    const [value, setValue] = useState(initailFilter.q);
+    const [filter, setFilter] = useState(initailFilter);
+
+    const memoFilter = useMemo(() => filter, [filter.q]);
+
+    useDelay(() => {
+        setFilter({
+            q: value?.trim(),
+        });
+    }, FETCH_BY_FILTERS_DELAY, value);
 
     const {
         posts,
-        getPosts,
+        // getPosts,
         // patchPost,
-    } = usePostsByUser();
+    } = usePostsByUser(memoFilter);
 
-    const list = useMemo(() => {
+    // Данный кейс решает задачу фильтрации на стороне frontend-a
+    // В ТЗ же указанно  - (если поисковой запрос не меняется в течение 500мс, делается запрос на сервер)
+    /* const list = useMemo(() => {
         if (!posts) {
             return null;
         }
@@ -42,16 +59,7 @@ const Main: FC = () => {
                 .toLocaleLowerCase()
                 .includes(filter.toLocaleLowerCase())
         );
-    }, [filter, posts]);
-
-    useEffect(() => {
-        (async () => {
-            await getPosts();
-        })();
-    }, []);
-    useDelay(() => {
-        setFilter(value.trim());
-    }, FETCH_BY_FILTERS_DELAY, value);
+    }, [filter, posts]); */
 
     return (
         <div className={styles.main}>
@@ -60,14 +68,14 @@ const Main: FC = () => {
                 value={value}
                 type={'text'}
                 placeholder={'Search'}
-                onChange={setValue}
+                onChange={(value) => setValue(value)}
             />
             {
-                list ?
-                    list.length ?
+                posts ?
+                    posts.length ?
                         <div className={styles.list}>
                             {
-                                list
+                                posts
                                     .map((post) =>
                                         <Post
                                             className={styles.post}
