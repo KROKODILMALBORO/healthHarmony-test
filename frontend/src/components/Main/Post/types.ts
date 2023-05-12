@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import {
     IPost,
 } from 'instances/Posts/types';
